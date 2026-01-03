@@ -5,7 +5,8 @@ import {
 } from 'lucide-react'; 
 import Starfield from './components/Starfield';
 import DeveloperBackground from './components/DeveloperBackground';
-
+import { Mail, Linkedin } from 'lucide-react'; // Ensure these are in your imports
+import SidebarStarfield from './components/SidebarStarfield'; // Adjust path if needed
 // 10 Indian Language Greetings
 const greetings = [
   "Hello", "नमस्ते", "नमस्कार", "ನಮಸ್ಕಾರ", "வணக்கம்", 
@@ -73,9 +74,16 @@ const certificates = [
   { title: "AWS Cloud Practitioner Essentials", issuedBy: "edX Verified" },
   { title: "Career Essentials in Business Analysis", issuedBy: "Microsoft and LinkedIn" },
   { title: "Career Essentials in Data Analysis", issuedBy: "Microsoft and LinkedIn" },
-  { title: "OM Advance Excel with AI", issuedBy: "Office Master" },
+  { title: "Advance Excel with AI", issuedBy: "Office Master" },
   { title: "Analyzing and Visualizing Data with Power BI", issuedBy: "edX Verified" },
   { title: "Software Engineering Job Simulation", issuedBy: "Goldman Sachs" }
+];
+
+const honors = [
+  { title: "Finalist", event: "Google Cloud Agentic AI Hackathon (2025)", detail: "Developed NeoPaathshaala" },
+  { title: "4th Place", event: "RAIT Technovate Project Competition (2025)", detail: "SportMatrix AI System" },
+  { title: "District Player", event: "Thane Division (2022)", detail: "Football, TT, Volleyball, Relay" },
+  { title: "Volunteer", event: "RAIT TechFest 2024", detail: "Successful Event Execution" }
 ];
 
 function App() {
@@ -88,7 +96,15 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % greetings.length);
-    }, 1000);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Language rotation logic - Faster 1s interval
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % greetings.length);
+    }, 1000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -104,7 +120,7 @@ function App() {
       
       <AnimatePresence>
         {!isDiving && (
-          <motion.div
+          <motion.div 
             key="welcome"
             exit={{ y: "-100vh" }}
             transition={{ duration: 1, ease: [0.7, 0, 0.3, 1] }}
@@ -176,32 +192,43 @@ function App() {
       </AnimatePresence>
 
       {isDiving && (
-        <motion.header 
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          className="fixed top-0 w-full bg-black text-white z-40 py-4 px-6 shadow-xl"
-        >
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <span className="font-bold text-xl tracking-tighter text-[#00BFFF]">SN</span>
-            <nav>
-              <ul className="flex gap-6 overflow-x-auto">
-                {navLinks.map((link) => (
-                  <li key={link.id}>
-                    <button 
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-[10px] uppercase tracking-widest hover:text-[#00BFFF] transition-colors whitespace-nowrap"
-                    >
-                      {link.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </motion.header>
-      )}
+        <>
+          {/* 1. Background stars fixed to sides */}
+          <SidebarStarfield />
 
-      <main className={`pt-4 px-6 max-w-6xl mx-auto text-black ${isDiving ? 'block' : 'hidden'}`}>
+          {/* 2. Your Header Navigation */}
+          <motion.header 
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            className="fixed top-0 w-full bg-black text-white z-40 py-4 px-6 shadow-xl"
+          >
+            <div className="max-w-7xl mx-auto flex justify-between items-center"> 
+              <span className="font-bold text-xl tracking-tighter text-[#00BFFF]">SN</span>
+              <nav>
+                <ul className="flex gap-6 overflow-x-auto">
+                  {navLinks.map((link) => (
+                    <li key={link.id}>
+                      <button 
+                        onClick={() => scrollToSection(link.id)}
+                        className="text-[10px] uppercase tracking-widest hover:text-[#00BFFF] transition-colors whitespace-nowrap"
+                      >
+                        {link.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </motion.header>
+
+          {/* 3. Main Content Wrapper - THIS MUST BE HERE */}
+          <main className="relative z-10 pt-4 px-6 max-w-6xl mx-auto text-black">
+            {/* ... Your Sections 01 to 07 go here ... */}
+          </main>
+        </>
+      )} {/* <--- THIS CLOSES THE isDiving BLOCK */}
+
+      <main className="relative z-10 pt-4 px-6 max-w-6xl mx-auto text-black"> 
         
         {/* ABOUT SECTION */}
         <section id="about" className="relative py-20 flex flex-col md:flex-row gap-12 items-start overflow-hidden">
@@ -276,7 +303,7 @@ function App() {
 
         {/* PROJECTS SECTION */}
         <section id="projects" className="pt-18 py-9 bg-white overflow-hidden scroll-mt-24">
-          <div className="max-w-6xl mx-auto px-6 mb-12">
+          <div className="max-w-6xl mx-auto mb-12">
             <motion.h2 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -338,7 +365,7 @@ function App() {
           </div>
         </section>
         {/* SKILLS SECTION */}
-<section id="skills" className="pt-18.5 py-9 max-w-6xl mx-auto scroll-mt-24 px-6">
+<section id="skills" className="pt-18 py-9 max-w-6xl mx-auto scroll-mt-24">
   <motion.h2 
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
@@ -381,10 +408,10 @@ function App() {
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         /* Made the main bubble smaller (min-h-[280px] and w-full max-w-[340px]) */
-        className="relative w-full max-w-[280px] min-h-[220px] flex flex-col items-center justify-center rounded-[60px] bg-black/5 border border-black/5 backdrop-blur-sm p-6 group overflow-visible"
+        className="relative w-full max-w-[280px] min-h-[200px] flex flex-col items-center justify-center rounded-[60px] bg-black/5 border border-black/5 backdrop-blur-sm p-6 group overflow-visible"
       >
         {/* Major Bubble Label */}
-        <h3 className="absolute top-8 text-[9px] font-mono uppercase tracking-[0.4em] text-gray-400 group-hover:text-[#00BFFF] transition-colors">
+        <h3 className="absolute top-8 text-[9px] font-mono uppercase tracking-[0.4em] text-blue-400 group-hover:text-[#00BFFF] transition-colors">
           {group.category}
         </h3>
 
@@ -423,8 +450,145 @@ function App() {
     ))}
   </div>
 </section>
+       {/* HONORS SECTION */}
+<section id="honors" className="pt-18 py-9 max-w-6xl mx-auto scroll-mt-24">
+  <div className="max-w-6xl mx-auto  mb-12">
+    <motion.h2 
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      className="text-xs font-mono text-[#00BFFF] uppercase tracking-[0.3em]"
+    >
+      / 06 Honors & Achievements
+    </motion.h2>
+  </div>
 
-        <div className="h-64"></div>
+  {/* Left-to-Right Marquee */}
+  <div className="flex relative w-full overflow-hidden">
+    <motion.div 
+      className="flex whitespace-nowrap"
+      animate={{ x: ["-50%", "0%"] }} // Left-to-Right direction
+      whileHover={{ transition: { duration: 0 }, x: undefined }} 
+      transition={{ 
+        duration: 50, 
+        repeat: Infinity, 
+        ease: "linear" 
+      }}
+    >
+      {[...honors, ...honors].map((honor, idx) => (
+        <div key={idx} className="inline-block px-4">
+          {/* Badge Shape (Pill Shape) */}
+          <div className="bg-[#00BFFF] text-white px-8 py-4 rounded-full border border-[#00BFFF]/30 flex flex-col items-center justify-center min-w-[300px] shadow-lg hover:border-[#00BFFF] transition-all duration-500 backdrop-blur-sm">
+            <span className="text-black font-bold text-sm tracking-tighter">
+              {honor.title}
+            </span>
+            <h3 className="text-white text-xs font-medium mt-1">
+              {honor.event}
+            </h3>
+            <p className="text-white-500 text-[9px] uppercase tracking-widest mt-1">
+              {honor.detail}
+            </p>
+          </div>
+        </div>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
+{/* CONNECT SECTION */}
+<section
+  id="connect"
+  className="pt-18 py-9 max-w-6xl mx-auto scroll-mt-24"
+>
+  <motion.h2
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    className="text-xs font-mono text-[#00BFFF] mb-12 uppercase tracking-[0.3em]"
+  >
+    / 07 Connect
+  </motion.h2>
+
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    className="bg-black/5 border border-black/10 backdrop-blur-xl rounded-[40px] p-10 md:p-16 flex flex-col md:flex-row justify-between items-center shadow-xl"
+  >
+    {/* Left Side: Text Only */}
+    <div className="space-y-6 w-full md:w-1/2">
+      <div>
+        <p className="text-[10px] uppercase tracking-widest text-gray-400 font-mono mb-1">
+          Email Me
+        </p>
+        <p className="text-xl md:text-2xl font-bold text-black hover:text-[#00BFFF] transition-colors">
+          sumitnawde2004@gmail.com
+        </p>
+      </div>
+
+      <div>
+        <p className="text-[10px] uppercase tracking-widest text-gray-400 font-mono mb-1">
+          Call Me
+        </p>
+        <p className="text-xl md:text-2xl font-bold text-black hover:text-[#00BFFF] transition-colors">
+          +91 7977297789
+        </p>
+      </div>
+
+      <div>
+        <p className="text-[10px] uppercase tracking-widest text-gray-400 font-mono mb-1">
+          Location
+        </p>
+        <p className="text-xl md:text-2xl font-bold text-black hover:text-[#00BFFF] transition-colors">
+          Mumbai, Maharashtra
+        </p>
+      </div>
+    </div>
+
+    {/* Right Side: Social Buttons (Mail FIXED) */}
+    <div className="mt-12 md:mt-0 flex gap-6">
+      {[
+        {
+          icon: <Linkedin size={28} />,
+          link: "https://linkedin.com/in/sumitnawde",
+        },
+        {
+          icon: <Github size={28} />,
+          link: "https://github.com/sumitnawde10",
+        },
+        {
+          icon: <Mail size={28} />,
+          link: "https://mail.google.com/mail/?view=cm&fs=1&to=sumitnawde2004@gmail.com",
+        },
+      ].map((social, i) => (
+        <motion.a
+          key={i}
+          href={social.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{
+            scale: 1.1,
+            backgroundColor: "#00BFFF",
+            color: "#000000",
+          }}
+          className="w-16 h-16 md:w-20 md:h-20 bg-black text-white rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg cursor-pointer"
+        >
+          {social.icon}
+        </motion.a>
+      ))}
+    </div>
+  </motion.div>
+
+
+  {/* Signature Line */}
+  <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    className="mt-12 text-center"
+  >
+    <div className="w-12 h-[1px] bg-[#00BFFF] mx-auto mb-4"></div>
+    <p className="text-[#00BFFF] font-mono text-[10px] uppercase tracking-[0.5em]">
+      Let&apos;s Connect
+    </p>
+  </motion.div>
+</section>
       </main>
     </div>
   );
