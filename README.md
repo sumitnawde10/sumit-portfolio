@@ -31,7 +31,7 @@ To run this project locally:
 
 1. **Clone the repo:**
    ```bash
-   git clone [https://github.com/sumitnawde10/Your-Repo-Name.git](https://github.com/sumitnawde10/Your-Repo-Name.git)
+   git clone [https://github.com/sumitnawde10/sumit10-portfolio.git]
 
 
 2. **Install dependencies:**
