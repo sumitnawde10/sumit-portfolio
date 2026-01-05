@@ -3,7 +3,7 @@
 A high-performance, interactive portfolio built with **React**, **Tailwind CSS**, and **Framer Motion**. This site features a unique "Dive In" entrance, interactive starfield backgrounds, and a modern "floating sheet" UI design.
 
 ## 🚀 Live Demo
-[Insert your Vercel/Netlify link here]
+https://sumit10-portfolio.vercel.app/
 
 ## ✨ Key Features
 * **Immersive Entrance**: A multi-language greeting sequence with a "Dive In" transition.
