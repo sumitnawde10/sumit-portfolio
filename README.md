@@ -46,6 +46,6 @@ npm run build
 📬 Contact
 Email: sumitnawde10@gmail.com
 
-LinkedIn: linkedin.com/in/sumitnawde
+LinkedIn: linkedin.com/in/sumitnawde/
 
 GitHub: github.com/sumitnawde10
