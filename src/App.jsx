@@ -438,7 +438,7 @@ function App() {
                 color: "#000000",
                 zIndex: 10 
               }}
-              className="px-3 py-1.5 rounded-full border border-black/5 bg-white/10 backdrop-blur-md shadow-sm cursor-grab active:cursor-grabbing flex items-center justify-center transition-colors duration-500"
+              className="px-4 py-2 rounded-full border border-black/5 bg-white/10 backdrop-blur-md shadow-sm cursor-grab active:cursor-grabbing flex items-center justify-center transition-colors duration-500"
             >
               <span className="text-[10px] font-bold whitespace-nowrap">
                 {skill}
