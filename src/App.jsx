@@ -547,7 +547,7 @@ function App() {
       {[
         {
           icon: <Linkedin size={28} />,
-          link: "https://linkedin.com/in/sumitnawde",
+          link: "https://linkedin.com/in/sumitnawde/",
         },
         {
           icon: <Github size={28} />,
