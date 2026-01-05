@@ -198,28 +198,32 @@ function App() {
 
           {/* 2. Your Header Navigation */}
           <motion.header 
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            className="fixed top-0 w-full bg-black text-white z-40 py-4 px-6 shadow-xl"
-          >
-            <div className="max-w-7xl mx-auto flex justify-between items-center"> 
-              <span className="font-bold text-xl tracking-tighter text-[#00BFFF]">SN</span>
-              <nav>
-                <ul className="flex gap-6 overflow-x-auto">
-                  {navLinks.map((link) => (
-                    <li key={link.id}>
-                      <button 
-                        onClick={() => scrollToSection(link.id)}
-                        className="text-[10px] uppercase tracking-widest hover:text-[#00BFFF] transition-colors whitespace-nowrap"
-                      >
-                        {link.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-          </motion.header>
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  className="fixed top-0 w-full bg-black text-white z-40 py-3 md:py-4 px-4 md:px-6 shadow-xl"
+>
+  <div className="max-w-7xl mx-auto flex justify-between items-center gap-4">
+    {/* Logo: Shrinks slightly on mobile to save space */}
+    <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 bg-white rounded-full flex items-center justify-center shadow-md">
+      <span className="font-bold text-sm md:text-lg tracking-tighter text-[#00BFFF]">SN</span>
+    </div>
+    
+    <nav className="flex-1 min-w-0"> {/* allows nav to shrink and scroll */}
+      <ul className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar py-1 scroll-smooth">
+        {navLinks.map((link) => (
+          <li key={link.id} className="flex-shrink-0">
+            <button 
+              onClick={() => scrollToSection(link.id)}
+              className="text-[9px] md:text-[10px] uppercase tracking-widest hover:text-[#00BFFF] transition-colors whitespace-nowrap"
+            >
+              {link.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</motion.header>
 
           {/* 3. Main Content Wrapper - THIS MUST BE HERE */}
           <main className="relative z-10 pt-4 px-6 max-w-6xl mx-auto text-black">
